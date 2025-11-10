@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-MDIw">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrandUp Nashik - Elevating Brands in Nashik</title>
+    <meta name="description" content="BrandUp Nashik is a premier digital marketing and branding agency in Nashik, specializing in brand strategy, SEO, social media, and web design.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // Enables dark mode
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        // NEW THEME: Sky Blue, Yellow (Amber), Green (Emerald)
+                        'primary': {
+                            '50': '#f0f9ff',
+                            '100': '#e0f2fe',
+                            '200': '#bae6fd',
+                            '300': '#7dd3fc',
+                            '400': '#38bdf8',
+                            '500': '#0ea5e9',
+                            '600': '#0284c7',
+                            '700': '#0369a1',
+                            '800': '#075985',
+                            '900': '#0c4a6e',
+                            '950': '#082f49',
+                        },
+                        'secondary': {
+                            '50': '#fffbeb',
+                            '100': '#fef3c7',
+                            '200': '#fde68a',
+                            '300': '#fcd34d',
+                            '400': '#fbbf24',
+                            '500': '#f59e0b',
+                            '600': '#d97706',
+                            '700': '#b45309',
+                            '800': '#92400e',
+                            '900': '#78350f',
+                            '950': '#451a03',
+                        },
+                        'accent': { // NEW GREEN ACCENT
+                            '50': '#ecfdf5',
+                            '100': '#d1fae5',
+                            '200': '#a7f3d0',
+                            '300': '#6ee7b7',
+                            '400': '#34d399',
+                            '500': '#10b981',
+                            '600': '#059669',
+                            '700': '#047857',
+                            '800': '#065f46',
+                            '900': '#064e3b',
+                            '950': '#022c22',
+                        }
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Base styling */
+        body {
+            @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100;
+        }
+
+        /* Helper for hero gradient */
+        .hero-gradient {
+            background: linear-gradient(180deg, rgba(8, 47, 73, 0.8) 0%, rgba(8, 47, 73, 1) 100%);
+        }
+        .section-padding {
+            @apply py-16 sm:py-24;
+        }
+        .section-heading {
+            @apply text-3xl font-bold tracking-tight text-primary-900 dark:text-primary-100 sm:text-4xl text-center;
+        }
+        .section-subheading {
+            @apply mt-2 text-lg leading-8 text-gray-600 dark:text-gray-400 text-center max-w-2xl mx-auto;
+        }
+
+        /* Scrolled Header Style */
+        #main-header.header-scrolled {
+             @apply shadow-lg h-16 bg-white/95 dark:bg-gray-800/95;
+        }
+
+        /* Active Nav Link */
+        .active-nav {
+            @apply text-primary-600 dark:text-primary-400;
+        }
+
+        /* Back to Top Button */
+        #backToTopBtn {
+            @apply hidden fixed bottom-6 right-6 bg-primary-600 text-white p-3 rounded-full shadow-lg transition-opacity hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-600 z-50;
+            opacity: 0;
+        }
+        #backToTopBtn.show {
+            @apply block;
+            opacity: 1;
+        }
+
+        /* Portfolio Filter */
+        .portfolio-filter-btn {
+            @apply px-4 py-2 font-medium text-gray-700 dark:text-gray-300 rounded-lg transition-colors;
+        }
+        .portfolio-filter-btn.active,
+        .portfolio-filter-btn:hover {
+            @apply bg-primary-100 text-primary-700 dark:bg-primary-900 dark:text-primary-200;
+        }
+        .portfolio-item {
+            display: block;
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out, display 0s 0.3s;
+            transform-origin: center;
+        }
+        .portfolio-item.hidden {
+            opacity: 0;
+            transform: scale(0.95);
+            display: none;
+        }
+
+        /* Swiper Testimonial Slider */
+        .testimonial-slider {
+            @apply w-full max-w-3xl mx-auto;
+        }
+        .testimonial-slide {
+            @apply p-8 rounded-lg shadow-lg text-center bg-primary-700 dark:bg-primary-800 text-white;
+        }
+        .swiper-pagination-bullet {
+            @apply bg-white/50;
+        }
+        .swiper-pagination-bullet-active {
+            @apply bg-white;
+        }
+        .slider-btn {
+            @apply text-white hover:text-secondary-300 transition-colors;
+        }
+
+        /* Process Steps */
+        .process-step {
+            @apply relative flex flex-col items-center p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg;
+        }
+        .process-step-number {
+            @apply flex items-center justify-center w-12 h-12 rounded-full bg-primary-600 text-white font-bold text-xl mb-4;
+        }
+        @media (min-width: 1024px) {
+            .process-step:not(:last-child)::after {
+                content: '';
+                position: absolute;
+                top: 3.5rem;
+                right: -50%;
+                transform: translateX(-50%);
+                width: calc(100% - 4rem);
+                height: 2px;
+                border-top: 2px dashed theme('colors.primary.300');
+                z-index: -1;
+            }
+        }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            @apply relative inline-flex items-center h-6 rounded-full w-11 transition-colors;
+        }
+        .theme-toggle-switch {
+            @apply inline-block w-4 h-4 transform bg-white rounded-full transition-transform;
+        }
+        /* Toggled state */
+        .dark .theme-toggle-switch {
+            transform: translateX(20px);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased transition-colors duration-300">
+
+    <header id="main-header" class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 transition-all duration-300 h-20">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-full">
+            <a href="#home" class="flex items-center space-x-2">
+                <svg class="h-8 w-8 text-primary-600 dark:text-primary-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="45" fill="#0ea5e9"/> <path d="M 30 70 Q 50 50 70 70" stroke="#f59e0b" stroke-width="8" fill="none" /> <path d="M 30 50 Q 50 30 70 50" stroke="#10b981" stroke-width="8" fill="none" /> </svg>
+                <span class="font-bold text-2xl text-primary-900 dark:text-primary-100">BrandUp <span class="text-secondary-500">Nashik</span></span>
+            </a>
+            
+            <div id="desktop-nav" class="hidden md:flex items-center space-x-6 lg:space-x-8">
+                <a href="#home" data-scroll-section="home" class="font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Home</a>
+                <a href="#about" data-scroll-section="about" class="font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">About</a>
+                <a href="#services" data-scroll-section="services" class="font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Services</a>
+                <a href="#process" data-scroll-section="process" class="font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Process</a>
+                <a href="#portfolio" data-scroll-section="portfolio" class="font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Portfolio</a>
+                <a href="#blog" data-scroll-section="blog" class="font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Blog</a>
+                <a href="#contact" data-scroll-section="contact" class="font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Contact</a>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="#contact" class="inline-block bg-accent-500 text-white px-4 py-2 rounded-lg font-medium shadow-sm hover:bg-accent-600 transition-colors">
+                    Get a Free Quote
+                </a>
+                <button id="theme-toggle-btn" class="theme-toggle bg-gray-300 dark:bg-primary-700" title="Toggle dark mode">
+                    <span class="theme-toggle-switch m-1">
+                        </span>
+                </button>
+            </div>
+
+            <div class="md:hidden flex items-center space-x-3">
+                 <button id="theme-toggle-btn-mobile" class="theme-toggle bg-gray-300 dark:bg-primary-700" title="Toggle dark mode">
+                    <span class="theme-toggle-switch m-1"></span>
+                </button>
+                <button id="mobile-menu-button" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 shadow-lg absolute top-16 left-0 right-0 z-40">
+            <a href="#home" class="block px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-primary-900">Home</a>
+            <a href="#about" class="block px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-primary-900">About</a>
+            <a href="#services" class="block px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-primary-900">Services</a>
+            <a href="#process" class="block px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-primary-900">Process</a>
+            <a href="#portfolio" class="block px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-primary-900">Portfolio</a>
+            <a href="#blog" class="block px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-primary-900">Blog</a>
+            <a href="#contact" class="block px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-primary-900">Contact</a>
+            <a href="#contact" class="block px-4 py-3 w-full text-left bg-accent-500 text-white font-medium hover:bg-accent-600">
+                Get a Free Quote
+            </a>
+        </div>
+    </header>
+
+    <main>
+
+        <section id="home" class="relative pt-32 pb-24 md:pt-48 md:pb-40 text-white overflow-hidden">
+            <div class="absolute inset-0">
+                <img src="https://placehold.co/1600x900/082f49/e0f2fe?text=Vibrant+Nashik+Skyline" 
+                     alt="Nashik city skyline at dusk" 
+                     class="w-full h-full object-cover"
+                     onerror="this.src='https://placehold.co/1600x900/082f49/e0f2fe?text=BrandUp+Nashik';this.onerror=null;">
+                <div class="absolute inset-0 hero-gradient"></div>
+            </div>
+            
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl text-shadow-lg" data-aos="fade-up">
+                    Elevating Brands in <span class="text-secondary-400" id="typed-target">Nashik</span>
+                </h1>
+                <p class="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-primary-100" data-aos="fade-up" data-aos-delay="100">
+                    We are BrandUp Nashik, your local partner for brand strategy, digital marketing, and creative design. Let's build your brand story, together.
+                </p>
+                <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="200">
+                    <a href="#services" class="inline-block bg-secondary-500 text-white px-8 py-3 rounded-lg font-semibold text-lg shadow-lg hover:bg-secondary-600 transition-colors">
+                        Our Services
+                    </a>
+                    <a href="#contact" class="inline-block bg-white text-primary-700 px-8 py-3 rounded-lg font-semibold text-lg shadow-lg hover:bg-primary-50 transition-colors">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="why-choose-us" class="section-padding bg-primary-50 dark:bg-primary-950">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="section-heading" data-aos="fade-up">Why Partner With Us?</h2>
+                <p class="section-subheading" data-aos="fade-up" data-aos-delay="100">
+                    We're data-driven, creative, and 100% focused on your success.
+                </p>
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg" data-aos="fade-up">
+                        <span class="text-5xl font-extrabold text-primary-600 dark:text-primary-400 counter" data-target="98">0</span><span class="text-5xl font-extrabold text-primary-600 dark:text-primary-400">%</span>
+                        <p class="mt-2 text-xl font-medium text-gray-700 dark:text-gray-300">Client Satisfaction</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                        <span class="text-5xl font-extrabold text-primary-600 dark:text-primary-400 counter" data-target="120">0</span><span class="text-5xl font-extrabold text-primary-600 dark:text-primary-400">+</span>
+                        <p class="mt-2 text-xl font-medium text-gray-700 dark:text-gray-300">Projects Completed</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                        <span class="text-5xl font-extrabold text-primary-600 dark:text-primary-400 counter" data-target="15">0</span><span class="text-5xl font-extrabold text-primary-600 dark:text-primary-400">+</span>
+                        <p class="mt-2 text-xl font-medium text-gray-700 dark:text-gray-300">Years Combined Experience</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section-padding">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div data-aos="fade-right">
+                        <span class="text-primary-600 dark:text-primary-400 font-semibold">About BrandUp Nashik</span>
+                        <h2 class="text-3xl font-bold tracking-tight text-primary-900 dark:text-primary-100 sm:text-4xl mt-2">
+                            We're Not Just an Agency. We're Your Growth Partner.
+                        </h2>
+                        <p class="mt-6 text-lg text-gray-700 dark:text-gray-300">
+                            Welcome to BrandUp Nashik! We're a passionate team of strategists, creatives, and digital experts right here in the heart of Nashik. Our mission is simple: to help local businesses and ambitious startups build unforgettable brands.
+                        </p>
+                        <p class="mt-4 text-lg text-gray-700 dark:text-gray-300">
+                            We believe that a great brand is built on an authentic story, smart strategy, and consistent execution. We dig deep to understand your vision, your market, and your customers to create branding and marketing that doesn't just look good—it delivers real results.
+                        </p>
+                    </div>
+                    <div data-aos="fade-left" data-aos-delay="100">
+                        <img src="https://placehold.co/600x400/0ea5e9/ffffff?text=Our+Creative+Team" 
+                             alt="BrandUp Nashik team working collaboratively" 
+                             class="w-full h-auto rounded-lg shadow-xl"
+                             onerror="this.src='https://placehold.co/600x400/0ea5e9/ffffff?text=Placeholder+Image';this.onerror=null;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="section-padding bg-primary-50 dark:bg-primary-950">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="section-heading" data-aos="fade-up">Services We Offer</h2>
+                <p class="section-subheading" data-aos="fade-up" data-aos-delay="100">
+                    A complete suite of branding and digital marketing solutions tailored for your business needs in Nashik.
+                </p>
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl dark:hover:shadow-primary-900/50 transition-shadow" data-aos="fade-up">
+                        <div class="inline-block p-3 bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-400 rounded-lg">
+                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 000-13.5 6 6 0 000 13.5z" /></svg>
+                        </div>
+                        <h3 class="mt-4 text-xl font-bold text-primary-900 dark:text-primary-100">Brand Strategy & Identity</h3>
+                        <p class="mt-2 text-gray-600 dark:text-gray-400">From logo design and brand guidelines to finding your unique voice, we build brands that stand out.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl dark:hover:shadow-primary-900/50 transition-shadow" data-aos="fade-up" data-aos-delay="100">
+                        <div class="inline-block p-3 bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-400 rounded-lg">
+                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg>
+                        </div>
+                        <h3 class="mt-4 text-xl font-bold text-primary-900 dark:text-primary-100">Social Media Marketing</h3>
+                        <p class="mt-2 text-gray-600 dark:text-gray-400">We manage your Facebook, Instagram, and LinkedIn to engage your community and grow your audience.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl dark:hover:shadow-primary-900/50 transition-shadow" data-aos="fade-up" data-aos-delay="200">
+                        <div class="inline-block p-3 bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-400 rounded-lg">
+                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
+                        </div>
+                        <h3 class="mt-4 text-xl font-bold text-primary-900 dark:text-primary-100">Influencer Marketing</h3>
+                        <p class="mt-2 text-gray-600 dark:text-gray-400">Connect with authentic local and national influencers to build trust and amplify your message.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl dark:hover:shadow-primary-900/50 transition-shadow" data-aos="fade-up">
+                        <div class="inline-block p-3 bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-400 rounded-lg">
+                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.15l.39-3.92C2.79 6.88 4.67 5.25 6.75 5.25h10.5c2.08 0 3.96 1.63 4.11 3.98l.39 3.92a2.25 2.25 0 01-2.25 2.55h-15a2.25 2.25 0 01-2.25-2.55z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 8.25a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5a.75.75 0 01.75-.75zM8.25 9a.75.75 0 00-.75.75v4.5a.75.75 0 001.5 0v-4.5A.75.75 0 008.25 9z" /></svg>
+                        </div>
+                        <h3 class="mt-4 text-xl font-bold text-primary-900 dark:text-primary-100">Website Design & Dev</h3>
+                        <p class="mt-2 text-gray-600 dark:text-gray-400">Beautiful, responsive, and fast-loading websites that convert visitors into customers.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl dark:hover:shadow-primary-900/50 transition-shadow" data-aos="fade-up" data-aos-delay="100">
+                        <div class="inline-block p-3 bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-400 rounded-lg">
+                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.996-4.491m-1.127-1.127l-3.182-3.182m0 0a8.25 8.25 0 00-13.996 4.491" /></svg>
+                        </div>
+                        <h3 class="mt-4 text-xl font-bold text-primary-900 dark:text-primary-100">SEO & Content Marketing</h3>
+                        <p class="mt-2 text-gray-600 dark:text-gray-400">Get found on Google. We use SEO and create valuable content to attract your ideal customers.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl dark:hover:shadow-primary-900/50 transition-shadow" data-aos="fade-up" data-aos-delay="200">
+                        <div class="inline-block p-3 bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-400 rounded-lg">
+                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.75A.75.75 0 013 4.5h.75zM15 10.5a.75.75 0 01.75.75v7.5a.75.75 0 01-1.5 0v-7.5a.75.75 0 01.75-.75z" /></svg>
+                        </div>
+                        <h3 class="mt-4 text-xl font-bold text-primary-900 dark:text-primary-100">Performance Marketing (Ads)</h3>
+                        <p class="mt-2 text-gray-600 dark:text-gray-400">Drive immediate results with targeted Google, Facebook, and Instagram ad campaigns.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="process" class="section-padding">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="section-heading" data-aos="fade-up">Our 4-Step Process</h2>
+                <p class="section-subheading" data-aos="fade-up" data-aos-delay="100">
+                    We follow a proven path to ensure your brand's success from start to finish.
+                </p>
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="process-step" data-aos="fade-up">
+                        <div class="process-step-number">1</div>
+                        <h3 class="text-xl font-bold text-primary-900 dark:text-primary-100">Discover & Strategize</h3>
+                        <p class="mt-2 text-gray-600 dark:text-gray-400 text-center">We dive deep into your brand, market, and goals to build a custom roadmap.</p>
+                    </div>
+                    <div class="process-step" data-aos="fade-up" data-aos-delay="100">
+                        <div class="process-step-number">2</div>
+                        <h3 class="text-xl font-bold text-primary-900 dark:text-primary-100">Design & Create</h3>
+                        <p class="mt-2 text-gray-600 dark:text-gray-400 text-center">Our creative team brings the strategy to life with stunning visuals and compelling content.</p>
+                    </div>
+                    <div class="process-step" data-aos="fade-up" data-aos-delay="200">
+                        <div class="process-step-number">3</div>
+                        <h3 class="text-xl font-bold text-primary-900 dark:text-primary-100">Launch & Optimize</h3>
+                        <p class="mt-2 text-gray-600 dark:text-gray-400 text-center">We launch your project, then use data to test, learn, and optimize for best results.</p>
+                    </div>
+                    <div class="process-step" data-aos="fade-up" data-aos-delay="300">
+                        <div class="process-step-number">4</div>
+                        <h3 class="text-xl font-bold text-primary-900 dark:text-primary-100">Grow & Scale</h3>
+                        <p class="mt-2 text-gray-600 dark:text-gray-400 text-center">We act as your long-term partner, helping you scale your brand and achieve new heights.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="portfolio" class="section-padding bg-primary-50 dark:bg-primary-950">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="section-heading" data-aos="fade-up">Our Recent Work</h2>
+                <p class="section-subheading" data-aos="fade-up" data-aos-delay="100">
+                    We're proud of the brands we've helped grow. Here's a peek at our portfolio.
+                </p>
+                
+                <div id="portfolio-filter" class="mt-12 flex flex-wrap justify-center gap-2" data-aos="fade-up" data-aos-delay="200">
+                    <button class="portfolio-filter-btn active" data-filter="all">All</button>
+                    <button class="portfolio-filter-btn" data-filter="branding">Branding</button>
+                    <button class="portfolio-filter-btn" data-filter="web">Web Design</button>
+                    <button class="portfolio-filter-btn" data-filter="social">Social Media</button>
+                </div>
+
+                <div id="portfolio-grid" class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <div class="portfolio-item group rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all" data-category="branding" data-aos="fade-up">
+                        <img src="https://placehold.co/600x400/f59e0b/ffffff?text=Project+One" 
+                             alt="Portfolio project one" 
+                             class="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-300"
+                             onerror="this.src='https://placehold.co/600x400/f59e0b/ffffff?text=Project';this.onerror=null;">
+                        <div class="p-6 bg-white dark:bg-gray-800">
+                            <span class="text-sm text-primary-600 dark:text-primary-400 font-medium">Branding & Identity</span>
+                            <h3 class="mt-1 text-xl font-bold text-primary-900 dark:text-primary-100">Nashik Local Eatery</h3>
+                            <p class="mt-2 text-gray-600 dark:text-gray-400">A complete rebrand for a beloved local restaurant, capturing its authentic taste.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item group rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all" data-category="web" data-aos="fade-up">
+                        <img src="https://placehold.co/600x400/0284c7/ffffff?text=Project+Two" 
+                             alt="Portfolio project two" 
+                             class="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-300"
+                             onerror="this.src='https://placehold.co/600x400/0284c7/ffffff?text=Project';this.onerror=null;">
+                        <div class="p-6 bg-white dark:bg-gray-800">
+                            <span class="text-sm text-primary-600 dark:text-primary-400 font-medium">Web Design & SEO</span>
+                            <h3 class="mt-1 text-xl font-bold text-primary-900 dark:text-primary-100">Sula Valley Tours</h3>
+                            <p class="mt-2 text-gray-600 dark:text-gray-400">A new e-commerce website that doubled online bookings through design and SEO.</p>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-item group rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all" data-category="social" data-aos="fade-up">
+                        <img src="https://placehold.co/600x400/059669/ffffff?text=Project+Three" 
+                             alt="Portfolio project three" 
+                             class="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-300"
+                             onerror="this.src='https://placehold.co/600x400/059669/ffffff?text=Project';this.onerror=null;">
+                        <div class="p-6 bg-white dark:bg-gray-800">
+                            <span class="text-sm text-primary-600 dark:text-primary-400 font-medium">Social Media Marketing</span>
+                            <h3 class="mt-1 text-xl font-bold text-primary-900 dark:text-primary-100">Nashik Fashion Startup</h3>
+                            <p class="mt-2 text-gray-600 dark:text-gray-400">Grew their Instagram from 0 to 10k followers in 6 months with an influencer strategy.</p>
+                        </div>
+                    </div>
+                    
+                    </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="section-padding relative overflow-hidden bg-primary-800 dark:bg-primary-900 text-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <h2 class="section-heading text-white" data-aos="fade-up">What Our Clients Say</h2>
+                <p class="section-subheading text-primary-200" data-aos="fade-up" data-aos-delay="100">
+                    We're humbled by the kind words from our partners.
+                </p>
+                
+                <div class="testimonial-slider mt-16" data-aos="fade-up" data-aos-delay="200">
+                    <div class="swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="testimonial-slide">
+                                    <p class="text-xl italic">"BrandUp Nashik completely transformed our online presence. Their team understood our vision and brought it to life with creativity and precision. Our sales have increased by 40%!"</p>
+                                    <div class="mt-6 flex items-center justify-center">
+                                        <img src="https://placehold.co/48x48/bae6fd/075985?text=AR" alt="Client avatar" class="h-12 w-12 rounded-full" onerror="this.src='https://placehold.co/48x48/bae6fd/075985?text=A';this.onerror=null;">
+                                        <div class="ml-4 text-left">
+                                            <p class="font-bold text-white">Anil Sharma</p>
+                                            <p class="text-sm text-primary-300">Owner, Nashik Local Eatery</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testimonial-slide">
+                                    <p class="text-xl italic">"Working with BrandUp was the best decision we made. Their social media strategy was spot-on, and they are always one step ahead. Highly recommended for any startup in Nashik."</p>
+                                    <div class="mt-6 flex items-center justify-center">
+                                        <img src="https://placehold.co/48x48/bae6fd/075985?text=PS" alt="Client avatar" class="h-12 w-12 rounded-full" onerror="this.src='https://placehold.co/48x48/bae6fd/075985?text=P';this.onerror=null;">
+                                        <div class="ml-4 text-left">
+                                            <p class="font-bold text-white">Priya Singh</p>
+                                            <p class="text-sm text-primary-300">Founder, Nashik Fashion</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testimonial-slide">
+                                    <p class="text-xl italic">"The website they designed for us is not only beautiful but also incredibly functional. The SEO work they did has put us on the first page of Google. A truly professional team."</p>
+                                    <div class="mt-6 flex items-center justify-center">
+                                        <img src="https://placehold.co/48x48/bae6fd/075985?text=RV" alt="Client avatar" class="h-12 w-12 rounded-full" onerror="this.src='https://placehold.co/48x48/bae6fd/075985?text=R';this.onerror=null;">
+                                        <div class="ml-4 text-left">
+                                            <p class="font-bold text-white">Rajesh Varma</p>
+                                            <p class="text-sm text-primary-300">Manager, Sula Valley Tours</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-button-prev slider-btn left-0 sm:-left-4"></div>
+                    <div class="swiper-button-next slider-btn right-0 sm:-right-4"></div>
+                    <div class="swiper-pagination mt-8 relative"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="blog" class="section-padding">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="section-heading" data-aos="fade-up">Latest Insights</h2>
+                <p class="section-subheading" data-aos="fade-up" data-aos-delay="100">
+                    Stay ahead of the curve with our latest tips, trends, and success stories.
+                </p>
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <div class="group flex flex-col bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-xl dark:hover:shadow-primary-900/50 transition-all" data-aos="fade-up">
+                        <img src="https://placehold.co/600x400/10b981/ffffff?text=SEO+Trends" 
+                             alt="Blog post about SEO" 
+                             class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                             onerror="this.src='https://placehold.co/600x400/10b981/ffffff?text=Blog';this.onerror=null;">
+                        <div class="p-6 flex flex-col flex-1">
+                            <span class="text-sm text-primary-600 dark:text-primary-400 font-medium">SEO</span>
+                            <h3 class="mt-1 text-xl font-bold text-primary-900 dark:text-primary-100">Top 5 SEO Trends for Nashik Businesses in 2026</h3>
+                            <p class="mt-2 text-gray-600 dark:text-gray-400 flex-1">Discover how local SEO and voice search are changing the game for businesses right here in our city.</p>
+                            <a href="#" class="mt-4 inline-block font-semibold text-accent-600 dark:text-accent-400 hover:text-accent-700 dark:hover:text-accent-300">
+                                Read More &rarr;
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="group flex flex-col bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-xl dark:hover:shadow-primary-900/50 transition-all" data-aos="fade-up" data-aos-delay="100">
+                        <img src="https://placehold.co/600x400/f59e0b/ffffff?text=Branding" 
+                             alt="Blog post about Branding" 
+                             class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                             onerror="this.src='https://placehold.co/600x400/f59e0b/ffffff?text=Blog';this.onerror=null;">
+                        <div class="p-6 flex flex-col flex-1">
+                            <span class="text-sm text-primary-600 dark:text-primary-400 font-medium">Branding</span>
+                            <h3 class="mt-1 text-xl font-bold text-primary-900 dark:text-primary-100">The Power of a Strong Brand Story: A Local Success</h3>
+                            <p class="mt-2 text-gray-600 dark:text-gray-400 flex-1">We break down how we helped a Nashik cafe double its traffic by finding its authentic brand voice.</p>
+                            <a href="#" class="mt-4 inline-block font-semibold text-accent-600 dark:text-accent-400 hover:text-accent-700 dark:hover:text-accent-300">
+                                Read More &rarr;
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="group flex flex-col bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-xl dark:hover:shadow-primary-900/50 transition-all" data-aos="fade-up" data-aos-delay="200">
+                        <img src="https://placehold.co/600x400/0ea5e9/ffffff?text=Social+Media" 
+                             alt="Blog post about Social Media" 
+                             class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                             onerror="this.src='https://placehold.co/600x400/0ea5e9/ffffff?text=Blog';this.onerror=null;">
+                        <div class="p-6 flex flex-col flex-1">
+                            <span class="text-sm text-primary-600 dark:text-primary-400 font-medium">Social Media</span>
+                            <h3 class="mt-1 text-xl font-bold text-primary-900 dark:text-primary-100">Beyond Likes: Driving Real Sales with Instagram Reels</h3>
+                            <p class="mt-2 text-gray-600 dark:text-gray-400 flex-1">It's not just about views. Learn our 3-step strategy for turning video content into paying customers.</p>
+                            <a href="#" class="mt-4 inline-block font-semibold text-accent-600 dark:text-accent-400 hover:text-accent-700 dark:hover:text-accent-300">
+                                Read More &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section-padding bg-gray-50 dark:bg-gray-950">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <div data-aos="fade-right">
+                        <h2 class="text-3xl font-bold tracking-tight sm:text-4xl text-primary-900 dark:text-primary-100">Let's Build Your Brand</h2>
+                        <p class="mt-4 text-lg text-gray-700 dark:text-gray-300">
+                            Ready to take the next step? We'd love to hear about your project. Fill out the form or get in touch with us directly.
+                        </p>
+                        <div class="mt-8 space-y-4">
+                            <div class="flex items-center">
+                                <svg class="h-6 w-6 text-primary-600 dark:text-primary-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
+                                <span class="ml-3 text-lg text-gray-700 dark:text-gray-300">123 College Road, Nashik, MH 422001</span>
+                            </div>
+                            <div class="flex items-center">
+                                <svg class="h-6 w-6 text-primary-600 dark:text-primary-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-1.49 1.49c-1.82-1.03-3.25-2.46-4.28-4.28l1.49-1.49c.362-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
+                                <span class="ml-3 text-lg text-gray-700 dark:text-gray-300">+91 900 000 0000</span>
+                            </div>
+                            <div class="flex items-center">
+                                <svg class="h-6 w-6 text-primary-600 dark:text-primary-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.66 0l-7.5-4.615A2.25 2.25 0 013 6.993V6.75" /></svg>
+                                <span class="ml-3 text-lg text-gray-700 dark:text-gray-300">hello@brandupnashik.com</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form id="contact-form" class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg space-y-4" data-aos="fade-left" data-aos-delay="100">
+                        <div id="form-success-message" class="hidden p-4 text-sm text-green-700 bg-green-100 dark:bg-green-900 dark:text-green-200 rounded-lg" role="alert">
+                            Thank you! Your message has been sent. We'll be in touch soon.
+                        </div>
+                        <div id="form-error-message" class="hidden p-4 text-sm text-red-700 bg-red-100 dark:bg-red-900 dark:text-red-200 rounded-lg" role="alert">
+                            Please correct the errors and try again.
+                        </div>
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-800 dark:text-gray-200">Full Name</label>
+                            <input type="text" id="name" name="name"
+                                   class="mt-1 block w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm text-gray-900 dark:text-white bg-white dark:bg-gray-700 focus:ring-primary-500 focus:border-primary-500">
+                            <span id="name-error" class="text-red-500 text-sm hidden">Full name is required.</span>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-800 dark:text-gray-200">Email Address</label>
+                            <input type="email" id="email" name="email"
+                                   class="mt-1 block w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm text-gray-900 dark:text-white bg-white dark:bg-gray-700 focus:ring-primary-500 focus:border-primary-500">
+                            <span id="email-error" class="text-red-500 text-sm hidden">Please enter a valid email address.</span>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-800 dark:text-gray-200">Message</label>
+                            <textarea id="message" name="message" rows="5"
+                                      class="mt-1 block w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm text-gray-900 dark:text-white bg-white dark:bg-gray-700 focus:ring-primary-500 focus:border-primary-500"></textarea>
+                            <span id="message-error" class="text-red-500 text-sm hidden">Message is required.</span>
+                        </div>
+                        <div>
+                            <button type="submit" 
+                                    class="w-full inline-block bg-accent-500 text-white px-8 py-3 rounded-lg font-semibold text-lg shadow-lg hover:bg-accent-600 transition-colors focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 dark:ring-offset-gray-800">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-primary-950 text-primary-200">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="md:flex md:justify-between">
+                <div class="mb-8 md:mb-0">
+                    <a href="#home" class="flex items-center space-x-2">
+                        <svg class="h-8 w-8 text-primary-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="45" fill="#0ea5e9"/>
+                            <path d="M 30 70 Q 50 50 70 70" stroke="#f59e0b" stroke-width="8" fill="none" />
+                            <path d="M 30 50 Q 50 30 70 50" stroke="#10b981" stroke-width="8" fill="none" />
+                        </svg>
+                        <span class="font-bold text-2xl text-white">BrandUp <span class="text-secondary-500">Nashik</span></span>
+                    </a>
+                    <p class="mt-4 max-w-xs">Your local partner for digital growth and creative branding.</p>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-8">
+                    <div>
+                        <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">Navigation</h3>
+                        <ul class="mt-4 space-y-3">
+                            <li><a href="#about" class="hover:text-white">About Us</a></li>
+                            <li><a href="#services" class="hover:text-white">Services</a></li>
+                            <li><a href="#process" class="hover:text-white">Process</a></li>
+                            <li><a href="#portfolio" class="hover:text-white">Portfolio</a></li>
+                            <li><a href="#blog" class="hover:text-white">Blog</a></li>
+                            <li><a href="#contact" class="hover:text-white">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">Services</h3>
+                        <ul class="mt-4 space-y-3">
+                            <li><a href="#services" class="hover:text-white">Branding</a></li>
+                            <li><a href="#services" class="hover:text-white">Web Design</a></li>
+                            <li><a href="#services" class="hover:text-white">SEO</a></li>
+                            <li><a href="#services" class="hover:text-white">Social Media</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">Connect</h3>
+                        <ul class="mt-4 space-y-3">
+                            <li><a href="#" class="hover:text-white">Instagram</a></li>
+                            <li><a href="#" class="hover:text-white">Facebook</a></li>
+                            <li><a href="#" class="hover:text-white">LinkedIn</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-8 border-primary-800">
+            <div class="text-center text-sm text-primary-400">
+                &copy; <span id="current-year"></span> BrandUp Nashik. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTopBtn" title="Go to top">
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+
+
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- 1. NEW: Initialize AOS Animations ---
+            AOS.init({
+                duration: 600, // values from 50-3000, with step 50ms
+                once: true,     // whether animation should happen only once - while scrolling down
+            });
+
+            // --- 2. NEW: Initialize Swiper.js Testimonial Slider ---
+            const testimonialSwiper = new Swiper('.testimonial-slider .swiper', {
+                loop: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            });
+
+            // --- 3. NEW: Dark Mode Toggle Logic ---
+            const themeToggleBtns = document.querySelectorAll('#theme-toggle-btn, #theme-toggle-btn-mobile');
+            const htmlEl = document.documentElement;
+
+            // On page load, check local storage
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                htmlEl.classList.add('dark');
+            } else {
+                htmlEl.classList.remove('dark');
+            }
+
+            themeToggleBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    if (htmlEl.classList.contains('dark')) {
+                        htmlEl.classList.remove('dark');
+                        localStorage.setItem('theme', 'light');
+                    } else {
+                        htmlEl.classList.add('dark');
+                        localStorage.setItem('theme', 'dark');
+                    }
+                });
+            });
+
+            // --- 4. NEW: Header Scroll Effect ---
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('header-scrolled');
+                } else {
+                    header.classList.remove('header-scrolled');
+                }
+            });
+
+            // --- 5. Set current year in footer ---
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // --- 6. Mobile menu toggle ---
+            const menuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            menuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // --- 7. Back to Top Button ---
+            const backToTopBtn = document.getElementById('backToTopBtn');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // --- 8. Active Nav Highlighting ---
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('#desktop-nav a');
+            
+            const onScroll = () => {
+                let currentSection = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (window.scrollY >= sectionTop - 100) { // 100px offset
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active-nav');
+                    if (link.dataset.scrollSection === currentSection) {
+                        link.classList.add('active-nav');
+                    }
+                });
+            };
+            window.addEventListener('scroll', onScroll);
+            onScroll(); // Run on load
+
+            // --- 9. Typed.js Hero Animation ---
+            new Typed('#typed-target', {
+                strings: ['Nashik.', 'Growth.', 'Success.', 'Your Brand.'],
+                typeSpeed: 50,
+                backSpeed: 30,
+                backDelay: 2000,
+                loop: true,
+                smartBackspace: true
+            });
+
+            // --- 10. Counter Animation ---
+            const animateCounter = (el) => {
+                const target = parseInt(el.dataset.target, 10);
+                let current = 0;
+                const increment = Math.ceil(target / 100); 
+                
+                const updateCount = () => {
+                    current += increment;
+                    if (current > target) {
+                        current = target;
+                    }
+                    el.textContent = current;
+                    if (current < target) {
+                        requestAnimationFrame(updateCount);
+                    }
+                };
+                requestAnimationFrame(updateCount);
+            };
+
+            const counterObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        document.querySelectorAll('.counter').forEach(animateCounter);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            const statsSection = document.getElementById('why-choose-us');
+            if(statsSection) {
+                counterObserver.observe(statsSection);
+            }
+
+            // --- 11. Portfolio Filter ---
+            const filterContainer = document.getElementById('portfolio-filter');
+            const filterBtns = filterContainer?.querySelectorAll('.portfolio-filter-btn');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+            if (filterContainer) {
+                filterContainer.addEventListener('click', (e) => {
+                    if (!e.target.matches('.portfolio-filter-btn')) return;
+
+                    filterBtns.forEach(btn => btn.classList.remove('active'));
+                    e.target.classList.add('active');
+
+                    const filter = e.target.dataset.filter;
+
+                    portfolioItems.forEach(item => {
+                        if (filter === 'all' || item.dataset.category === filter) {
+                            item.classList.remove('hidden');
+                        } else {
+                            item.classList.add('hidden');
+                        }
+                    });
+                });
+            }
+
+            // --- 12. Advanced Contact Form Validation ---
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                const nameInput = document.getElementById('name');
+                const emailInput = document.getElementById('email');
+                const messageInput = document.getElementById('message');
+                const nameError = document.getElementById('name-error');
+                const emailError = document.getElementById('email-error');
+                const messageError = document.getElementById('message-error');
+                const successMsg = document.getElementById('form-success-message');
+                const errorMsg = document.getElementById('form-error-message');
+
+                const validateEmail = (email) => {
+                    const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+                    return re.test(String(email).toLowerCase());
+                };
+
+                const validateField = (input, errorEl, message) => {
+                    if (input.value.trim() === '') {
+                        errorEl.textContent = message;
+                        errorEl.classList.remove('hidden');
+                        return false;
+                    }
+                    errorEl.classList.add('hidden');
+                    return true;
+                };
+
+                const validateForm = () => {
+                    let isValid = true;
+                    isValid = validateField(nameInput, nameError, 'Full name is required.') && isValid;
+                    isValid = validateField(messageInput, messageError, 'Message is required.') && isValid;
+                    
+                    if (!validateEmail(emailInput.value.trim())) {
+                        emailError.classList.remove('hidden');
+                        isValid = false;
+                    } else {
+                        emailError.classList.add('hidden');
+                    }
+                    return isValid;
+                };
+
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    successMsg.classList.add('hidden');
+                    errorMsg.classList.add('hidden');
+                    
+                    if (validateForm()) {
+                        successMsg.classList.remove('hidden');
+                        contactForm.reset();
+                        setTimeout(() => {
+                            successMsg.classList.add('hidden');
+                        }, 5000);
+                    } else {
+                        errorMsg.classList.remove('hidden');
+                    }
+                });
+            }
+
+        });
+    </script>
+</body>
+</html>
